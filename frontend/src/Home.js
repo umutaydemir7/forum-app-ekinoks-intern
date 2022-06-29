@@ -1,38 +1,58 @@
-import {useState} from "react";
+import { useEffect, useState } from "react";
 import TopicList from "./TopicList";
-
-
-
+import axios from "axios";
 
 const Home = () => {
-    const [topics, setTopics] = useState([
-        { title: 'Sports', body: 'lorem ipsum...', commentCount:83, id: 1 },
-        { title: 'Education', body: 'lorem ipsum...', commentCount:156, id: 2 },
-        { title: 'Coding', body: 'lorem ipsum...', commentCount:74, id: 3 }
+  const [topics, setTopics] = useState([
+   
+  ]);
 
-    ]);
+  useEffect(() => {
+    axios.get("http://localhost:8080/maintopic/allmaintopics").then((res) => {
+      console.log(res.data);
+      setTopics(res.data)
+    });
+  }
+  ,[]);
 
-const handleClick= () => { 
+  
 
-    setTopics( [{ title: 'Football', body: 'lorem ipsum...', commentCount:83, id: 1 },
-    { title: 'Basketball', body: 'lorem ipsum...', commentCount:156, id: 2 },
-    { title: 'Volleyball', body: 'lorem ipsum...', commentCount:74, id: 3 }]);
+  const handleDelete = (name) => {
+    const newTopics = topics.filter((topic) => topic.name !== name);
+    setTopics(newTopics);
+  };
 
-}
-    return ( 
-        <div className="Home">
-           
-            <div className="topic-list">
-        {topics.map((topic) =>(
-            <div onClick={() => handleClick()} className="topic-view" key={topic.id}>
-                <h2>{topic.title}</h2>
-                <h3>Comments: {topic.commentCount}</h3>
+  const handleClick = (name) => {
+    axios.get("http://localhost:8080/sidetopic/"+name).then((res) => {
+      console.log(res.data);
+      setTopics(res.data)
+    });
+  };
+
+
+  return (
+    <div className="Home">
+      <div className="topic-list">
+        {topics.map((topic) => (
+          <div>
+            <div
+              onClick={() => handleClick(topic.name)}
+              className="topic-view"
+              key={topic.id}
+            >
+              <h2>{topic.name}</h2>
+             
             </div>
-        )      
-        )}
-        </div>
-        </div>
-     );
-}
- 
+            <div>
+              <button onClick={() => handleDelete(topic.name)}>
+                Delete me
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default Home;

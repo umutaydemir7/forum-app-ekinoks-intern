@@ -8,6 +8,7 @@
 }
 
 
+
 .navbar {
   padding: 20px;
   display: flex;
@@ -46,10 +47,14 @@
   border-radius: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  
+
+  
 }
 
 .topic-view :hover {
   color: aqua;
+  
  
 }
 
@@ -58,13 +63,17 @@
   padding-bottom: 1%;
   padding: 1%;
   
+  
 }
 
-.topic-view h3{
-  text-align:right;
-  padding-bottom: 2p;
-  padding: 1%;
+.text-link {
+  text-decoration: none;
 }
+
+
+
+
+
 
 
 

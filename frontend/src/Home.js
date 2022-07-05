@@ -1,57 +1,51 @@
 import { useEffect, useState } from "react";
-import TopicList from "./TopicList";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [topics, setTopics] = useState([
-   
-  ]);
+  const [topics, setTopics] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/maintopic/allmaintopics").then((res) => {
-      console.log(res.data);
-      setTopics(res.data)
-    });
-  }
-  ,[]);
-
+    axios
+      .get("http://localhost:8080/maintopic/allmaintopics")
+      .then((res) => {
+        if (res.status !== 200) {
+          setError(true);
+          setIsLoading(false);
+        }
+        setTopics(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(true);
+        setIsLoading(false);
+      });
+  }, []);
   
-
-  const handleDelete = (name) => {
-    const newTopics = topics.filter((topic) => topic.name !== name);
-    setTopics(newTopics);
-  };
-
-  const handleClick = (name) => {
-    axios.get("http://localhost:8080/sidetopic/"+name).then((res) => {
-      console.log(res.data);
-      setTopics(res.data)
-    });
-  };
-
-
   return (
-    <div className="Home">
+    
       <div className="topic-list">
+        {error && <div>Could not retrieve data from the resource</div>}
+        {isLoading && <div>Retrieving data...</div>}
         {topics.map((topic) => (
-          <div>
-            <div
-              onClick={() => handleClick(topic.name)}
-              className="topic-view"
-              key={topic.id}
-            >
-              <h2>{topic.name}</h2>
-             
-            </div>
-            <div>
-              <button onClick={() => handleDelete(topic.name)}>
-                Delete me
-              </button>
-            </div>
+
+          <div key={topic.id}>
+          <Link className='text-link' to={{ pathname: "/sidetopic/" + topic.name }}>
+            
+              <div
+                className="topic-view"
+                key={topic.id}
+              >
+                <h2>{topic.name}</h2>
+              </div>
+            
+          </Link>
           </div>
         ))}
       </div>
-    </div>
+    
   );
 };
 

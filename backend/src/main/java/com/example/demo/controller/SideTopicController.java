@@ -1,15 +1,18 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.SideTopic;
+import com.example.demo.model.User;
 import com.example.demo.repository.SideTopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/SideTopic")
+@CrossOrigin
+@RequestMapping("/sidetopic")
 public class SideTopicController {
 
     @Autowired
@@ -17,9 +20,18 @@ public class SideTopicController {
 
 
     @GetMapping("/allsidetopics")
+    @CrossOrigin
     public ResponseEntity<List<SideTopic>> getAllSideTopics() {
         return  ResponseEntity.ok(sideTopicRepository.findAll());
     }
+
+    @GetMapping("/{mainTopicName}")
+    @CrossOrigin
+    public ResponseEntity<List<SideTopic>> getSideTopicsByMainTopic(@PathVariable String mainTopicName) {
+        return  ResponseEntity.ok(sideTopicRepository.findMainTopicsByName(mainTopicName));
+    }
+
+
 
 
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/maintopic")
 public class MainTopicController {
 
@@ -17,6 +18,7 @@ public class MainTopicController {
 
 
     @GetMapping("/allmaintopics")
+    @CrossOrigin
     public ResponseEntity<List<MainTopic>> getAllMainTopics() {
         return  ResponseEntity.ok(mainTopicRepository.findAll());
     }

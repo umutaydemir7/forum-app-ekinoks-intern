@@ -10,11 +10,16 @@ public class Comment {
 
     @Id
     private String id;
-    @Indexed
+    @Indexed(unique = true)
     private User user;
 
     private String text;
-    private SideTopic sidetopic;
+
+    private String discussionName;
+
+    @Indexed(unique = true)
+    private String userSent;
+
 
     public String getId() {
         return id;
@@ -40,11 +45,25 @@ public class Comment {
         this.text = text;
     }
 
-    public SideTopic getSidetopic() {
-        return sidetopic;
+    public String getDiscussionName() {
+        return discussionName;
     }
 
-    public void setSidetopic(SideTopic sidetopic) {
-        this.sidetopic = sidetopic;
+    public void setDiscussionName(String discussionName) {
+        this.discussionName = discussionName;
+    }
+
+    public String getUserSent() {
+        return userSent;
+    }
+
+    public void setUserSent(String userSent) {
+        this.userSent = userSent;
+    }
+
+    public Comment(String text, String discussionName, String userSent) {
+        this.text = text;
+        this.discussionName = discussionName;
+        this.userSent = userSent;
     }
 }

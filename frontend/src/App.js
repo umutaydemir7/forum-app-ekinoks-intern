@@ -5,11 +5,15 @@ import Home from "./Home";
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import SideTopic from "./SideTopic";
 import Discussions from "./Discussions";
+import Comments from "./Comments";
+import Login from "./Login";
+import {CookiesProvider} from "react-cookie";
 
 function App() {
 
   
   return (
+    <CookiesProvider>
   <Router>
     <div className="App">
       <Navbar />
@@ -21,11 +25,16 @@ function App() {
           </Route>
           <Route  path="/discussions/:name" element={<Discussions />}> 
           </Route>
+          <Route  path="/comments/:name" element={<Comments />}> 
+          </Route>
+          <Route  path="/login" element={<Login />}> 
+          </Route>
           
         </Routes>
       </div>
     </div>
     </Router>
+    </CookiesProvider>
   );
 }
 

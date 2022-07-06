@@ -23,29 +23,24 @@ const Home = () => {
         setIsLoading(false);
       });
   }, []);
-  
-  return (
-    
-      <div className="topic-list">
-        {error && <div>Could not retrieve data from the resource</div>}
-        {isLoading && <div>Retrieving data...</div>}
-        {topics.map((topic) => (
 
-          <div key={topic.id}>
-          <Link className='text-link' to={{ pathname: "/sidetopic/" + topic.name }}>
-            
-              <div
-                className="topic-view"
-                key={topic.id}
-              >
-                <h2>{topic.name}</h2>
-              </div>
-            
+  return (
+    <div className="topic-list">
+      {error && <div>Could not retrieve data from the resource</div>}
+      {isLoading && <div>Retrieving data...</div>}
+      {topics.map((topic) => (
+        <div key={topic.id}>
+          <Link
+            className="text-link"
+            to={{ pathname: "/sidetopic/" + topic.name }}
+          >
+            <div className="topic-view" key={topic.id}>
+              <h2>{topic.name}</h2>
+            </div>
           </Link>
-          </div>
-        ))}
-      </div>
-    
+        </div>
+      ))}
+    </div>
   );
 };
 

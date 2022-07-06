@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-const Discussions = () => {
+const Comments = () => {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -12,9 +12,8 @@ const Discussions = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/discussion/" + name)
+      .get("http://localhost:8080/comments/" + name)
       .then((res) => {
-        console.log();
         if (res.status !== 200) {
           setError(true);
           setIsLoading(false);
@@ -38,18 +37,27 @@ const Discussions = () => {
       {isblank && <div>There is no data in this section</div>}
       {topics.map((topic) => (
         <div key={topic.id}>
-          <Link
-            className="text-link"
-            to={{ pathname: "/comments/" + topic.name }}
-          >
-            <div className="topic-view" key={topic.id}>
-              <h2>{topic.name}</h2>
+          <div className="comment-view" key={topic.id}>
+            <div className="comment-style" style={{ width: "33.33%" }}>
+              <h2>
+                {" "}
+                Sent by:
+                <br /> {topic.userSent}
+              </h2>
+              <h2>
+                {" "}
+                Date:
+                <br /> {topic.userSent}
+              </h2>
             </div>
-          </Link>
+            <div className="comment-style" style={{ width: "66.66%" }}>
+              <h2>{topic.text}</h2>
+            </div>
+          </div>
         </div>
       ))}
     </div>
   );
 };
 
-export default Discussions;
+export default Comments;

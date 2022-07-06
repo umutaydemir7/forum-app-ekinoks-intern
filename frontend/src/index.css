@@ -35,7 +35,7 @@
   color: white;
 }
 .content {
-  max-width: 80%;
+  max-width: 85%;
   margin: 40px auto;
   padding: 20px;
 }
@@ -64,11 +64,26 @@
   padding: 1%;
   
   
+  
 }
 
 .text-link {
   text-decoration: none;
 }
+
+.comment-view{
+  border: 2px solid #333;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.comment-style{
+  padding: 1%;
+  border: 1px solid #333;
+  
+}
+
+
 
 
 

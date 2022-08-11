@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+
+const Home = (user) => {
   const [topics, setTopics] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  
+
+  
 
   useEffect(() => {
+    
     axios
       .get("http://localhost:8080/maintopic/allmaintopics")
       .then((res) => {
@@ -22,10 +27,11 @@ const Home = () => {
         setError(true);
         setIsLoading(false);
       });
-  }, []);
+  }, );
 
   return (
     <div className="topic-list">
+    
       {error && <div>Could not retrieve data from the resource</div>}
       {isLoading && <div>Retrieving data...</div>}
       {topics.map((topic) => (

@@ -7,13 +7,16 @@ import SideTopic from "./SideTopic";
 import Discussions from "./Discussions";
 import Comments from "./Comments";
 import Login from "./Login";
-import {CookiesProvider} from "react-cookie";
+import Signup from "./Signup";
+import Profile from "./Profile";
+import ApproveRequests from "./ApproveRequests";
+
 
 function App() {
 
   
   return (
-    <CookiesProvider>
+   
   <Router>
     <div className="App">
       <Navbar />
@@ -29,12 +32,18 @@ function App() {
           </Route>
           <Route  path="/login" element={<Login />}> 
           </Route>
+          <Route  path="/signup" element={<Signup />}> 
+          </Route>
+          <Route  path="/profile/:name" element={<Profile />}> 
+          </Route>
+          <Route  path="/requests" element={<ApproveRequests/>}> 
+          </Route>
           
         </Routes>
       </div>
     </div>
     </Router>
-    </CookiesProvider>
+    
   );
 }
 

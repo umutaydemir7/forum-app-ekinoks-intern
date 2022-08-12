@@ -27,6 +27,8 @@ const Login = () => {
         .then((res) => {
           console.log(res);
           localStorage.setItem("user", JSON.stringify(res.data.username));
+          localStorage.setItem("role", JSON.stringify(res.data.roles[0]));
+          
           navigate("/");
           window.location.reload();
         })

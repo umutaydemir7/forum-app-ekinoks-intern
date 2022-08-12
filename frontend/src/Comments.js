@@ -27,7 +27,6 @@ const Comments = () => {
           setIsLoading(false);
         }
         setTopics(res.data);
-        console.log(res.data);
         setIsLoading(false);
         if (res.data.length == 0) {
           setIsBlank(true);

@@ -12,10 +12,22 @@ public class SideTopic {
 
     @Id
     private String id;
-    @Indexed(unique = true)
+    @Indexed
     @Size(max = 30, message = "{validation.name.size.too_long}")
     private String name;
     private String mainTopicName;
+
+    private String userSent;
+
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getMainTopicName() {
         return mainTopicName;
@@ -42,9 +54,19 @@ public class SideTopic {
         this.id = id;
     }
 
-    public SideTopic(String name, String mainTopicName) {
+    public String getUserSent() {
+        return userSent;
+    }
+
+    public void setUserSent(String userSent) {
+        this.userSent = userSent;
+    }
+
+    public SideTopic(String name, String mainTopicName, String userSent) {
         this.name = name;
         this.mainTopicName =mainTopicName;
+        this.userSent = userSent;
+
     }
 
 

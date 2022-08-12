@@ -33,7 +33,7 @@ import payload.request.SignupRequest;
 import payload.response.MessageResponse;
 import payload.response.UserInfoResponse;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -47,7 +47,10 @@ public class AuthController {
     PasswordEncoder encoder;
     @Autowired
     JwtUtils jwtUtils;
+
+
     @PostMapping("/signin")
+    @CrossOrigin()
     public ResponseEntity<?> authenticateUser(@Valid  @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -64,6 +67,7 @@ public class AuthController {
                         roles));
     }
     @PostMapping("/signup")
+    @CrossOrigin()
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity

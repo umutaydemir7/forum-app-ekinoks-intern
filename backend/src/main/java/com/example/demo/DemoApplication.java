@@ -1,14 +1,8 @@
 package com.example.demo;
 
 
-import com.example.demo.model.Comment;
-import com.example.demo.model.Discussion;
-import com.example.demo.model.MainTopic;
-import com.example.demo.model.SideTopic;
-import com.example.demo.repository.CommentRepository;
-import com.example.demo.repository.DiscussionRepository;
-import com.example.demo.repository.MainTopicRepository;
-import com.example.demo.repository.SideTopicRepository;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
 	@Autowired
-	CommentRepository commentRepository;
+	UserRepository userRepository;
 
 
 	public static void main(String[] args) {
@@ -32,7 +26,7 @@ public class DemoApplication implements CommandLineRunner {
 
 
 
-		commentRepository.save(new Comment("You should do a lot of practice", "How to dribble the ball","basketball_lover"));
+		//userRepository.save(new User("mod", "mod@mod.com","mod123"));
 
 		/*mainTopicRepository.save(new MainTopic("Coding"));
 		mainTopicRepository.save(new MainTopic("Education"));

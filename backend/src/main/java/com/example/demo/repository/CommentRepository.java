@@ -18,6 +18,8 @@ public interface CommentRepository extends MongoRepository<Comment, String> {
     @Query("{ 'discussionName' : ?0 }")
     List<Comment> findCommentsByName(String discussionName);
 
+
+
     public long count();
 
 }

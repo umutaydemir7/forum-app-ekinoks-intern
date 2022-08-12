@@ -10,10 +10,21 @@ public class Discussion {
 
     @Id
     private String id;
-    @Indexed(unique = true)
+    @Indexed
     private String name;
     private String sideTopicName;
 
+    private String status;
+
+    private String userSent;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getId() {
         return id;
@@ -40,8 +51,19 @@ public class Discussion {
     public void setSideTopicName(String sideTopicName) {
         this.sideTopicName = sideTopicName;
     }
-    public Discussion(String name, String sideTopicName) {
+
+
+    public String getUserSent() {
+        return userSent;
+    }
+
+    public void setUserSent(String userSent) {
+        this.userSent = userSent;
+    }
+
+    public Discussion(String name, String sideTopicName, String userSent) {
         this.name = name;
         this.sideTopicName = sideTopicName;
+        this.userSent= userSent;
     }
 }

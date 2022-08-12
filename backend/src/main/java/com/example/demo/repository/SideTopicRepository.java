@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 
+import com.example.demo.model.Discussion;
 import com.example.demo.model.SideTopic;
 import com.example.demo.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -18,8 +19,12 @@ public interface SideTopicRepository extends MongoRepository<SideTopic, String> 
     SideTopic findItemByName(String name);
 
 
-    @Query("{ 'mainTopicName' : ?0 }")
-    List<SideTopic> findMainTopicsByName(String mainTopicName);
+
+    @Query("{ 'mainTopicName' : ?0, status: 'approved' }")
+    List<SideTopic> findApprovedSideTopicsByName(String mainTopicName);
+
+    @Query("{  status: 'pending'}")
+    List<SideTopic> findPendingMainTopicsByName();
 
 
 

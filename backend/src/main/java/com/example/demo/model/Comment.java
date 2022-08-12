@@ -4,22 +4,34 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 
 @Document("Comment")
 public class Comment {
 
     @Id
     private String id;
-    @Indexed(unique = true)
+    @Indexed
     private User user;
 
     private String text;
 
+    private LocalDate date;
+
     private String discussionName;
 
-    @Indexed(unique = true)
+    @Indexed
     private String userSent;
 
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     public String getId() {
         return id;

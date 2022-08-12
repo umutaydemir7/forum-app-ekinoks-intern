@@ -10,15 +10,24 @@ public class MainTopic {
 
     @Id
     private String id;
-    @Indexed(unique = true)
+    @Indexed
     private String name;
 
+    private String status;
+    private String userSent;
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getId() {
         return id;
     }
-
-
 
     public String getName() {
         return name;
@@ -32,11 +41,17 @@ public class MainTopic {
         this.id = id;
     }
 
-    public MainTopic(String name) {
+    public MainTopic(String name, String userSent) {
+
         this.name = name;
+        this.userSent = userSent;
     }
 
+    public String getUserSent() {
+        return userSent;
+    }
 
-
-
+    public void setUserSent(String userSent) {
+        this.userSent = userSent;
+    }
 }

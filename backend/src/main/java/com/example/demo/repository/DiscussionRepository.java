@@ -15,8 +15,11 @@ public interface DiscussionRepository extends MongoRepository<Discussion, String
     Discussion findItemByName(String name);
 
 
-    @Query("{ 'sideTopicName' : ?0 }")
-    List<Discussion> findDiscussionsByName(String sideTopicName);
+    @Query("{ 'sideTopicName' : ?0, status: 'approved' }")
+    List<Discussion> findApprovedDiscussionsByName(String sideTopicName);
+
+    @Query("{  status: 'pending'}")
+    List<Discussion> findPendingDiscussionsByName();
 
 
 
